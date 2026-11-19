@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PVC o Legno?</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(180deg,#0B2240,#1E4B7A);
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+color:white;
+}
+
+.container{
+width:100%;
+max-width:500px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:30px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 40px rgba(0,0,0,.25);
+}
+
+.logo{
+text-align:center;
+font-size:14px;
+letter-spacing:2px;
+margin-bottom:15px;
+opacity:.8;
+}
+
+h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+opacity:.8;
+margin-bottom:30px;
+}
+
+.question{
+font-size:24px;
+font-weight:bold;
+text-align:center;
+margin-bottom:25px;
+line-height:1.4;
+}
+
+.answers{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.btn{
+padding:18px;
+border:none;
+border-radius:15px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+background:white;
+color:#0B2240;
+transition:.2s;
+}
+
+.btn:hover{
+transform:scale(1.02);
+}
+
+.result{
+display:none;
+text-align:center;
+}
+
+.percentages{
+font-size:28px;
+font-weight:bold;
+margin:20px 0;
+}
+
+.bar{
+height:28px;
+width:100%;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:25px;
+}
+
+.fill{
+height:100%;
+display:flex;
+}
+
+.pvcfill{
+background:#1877c9;
+}
+
+.woodfill{
+background:#8B5A2B;
+}
+
+.result h2{
+margin-bottom:15px;
+}
+
+.result ul{
+text-align:left;
+margin:20px auto;
+max-width:280px;
+line-height:1.8;
+}
+
+.cta{
+margin-top:20px;
+font-weight:bold;
+}
+
+.restart{
+margin-top:25px;
+padding:12px 20px;
+background:white;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="logo">MELGARI SERRAMENTI</div>
+
+<h1>🏠 PVC o LEGNO?</h1>
+
+<p class="subtitle">
+Scopri quale materiale si adatta meglio alla tua casa.
+</p>
+
+<div id="quiz">
+
+<div id="question" class="question"></div>
+
+<div id="answers" class="answers"></div>
+
+</div>
+
+<div id="result" class="result"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let pvc = 0;
+let legno = 0;
+let current = 0;
+
+const questions = [
+
+{
+question: "Cosa conta di più?",
+a: "✨ Eleganza naturale",
+b: "⚙️ Praticità quotidiana",
+pa: "legno",
+pb: "pvc"
+},
+
+{
+question: "Che stile ha la tua casa?",
+a: "🏡 Classico o tradizionale",
+b: "🏢 Moderno o contemporaneo",
+pa: "legno",
+pb: "pvc"
+},
+
+{
+question: "Cosa preferisci?",
+a: "🌳 Materiali naturali",
+b: "🚀 Tecnologia e prestazioni",
+pa: "legno",
+pb: "pvc"
+},
+
+{
+question: "Nel tempo vuoi...",
+a: "🎨 Personalizzare e valorizzare",
+b: "✅ Dimenticarti della manutenzione",
+pa: "legno",
+pb: "pvc"
+},
+
+{
+question: "La priorità finale è...",
+a: "💎 Prestigio estetico",
+b: "💰 Rapporto qualità/prezzo",
+pa: "legno",
+pb: "pvc"
+}
+
+];
+
+function renderQuestion(){
+
+if(current >= questions.length){
+showResult();
+return;
+}
+
+const q = questions[current];
+
+document.getElementById("question").innerHTML = q.question;
+
+document.getElementById("answers").innerHTML = `
+<button class="btn" onclick="answer('a')">${q.a}</button>
+<button class="btn" onclick="answer('b')">${q.b}</button>
+`;
+
+}
+
+function answer(choice){
+
+const q = questions[current];
+
+if(choice === 'a'){
+if(q.pa === 'pvc'){
+pvc++;
+}else{
+legno++;
+}
+}
+
+if(choice === 'b'){
+if(q.pb === 'pvc'){
+pvc++;
+}else{
+legno++;
+}
+}
+
+current++;
+
+renderQuestion();
+
+}
+
+function showResult(){
+
+document.getElementById("quiz").style.display="none";
+
+const totale = pvc + legno;
+
+const pvcPerc = Math.round((pvc / totale) * 100);
+const legnoPerc = 100 - pvcPerc;
+
+let html = '';
+
+if(pvcPerc >= legnoPerc){
+
+html += `
+<h2>✅ Il PVC sembra la scelta ideale</h2>
+`;
+
+} else {
+
+html += `
+<h2>✅ Il LEGNO sembra la scelta ideale</h2>
+`;
+
+}
+
+html += `
+
+<div class="percentages">
+PVC ${pvcPerc}%<br>
+LEGNO ${legnoPerc}%
+</div>
+
+<div class="bar">
+<div class="fill">
+
+<div class="pvcfill"
+style="width:${pvcPerc}%">
+</div>
+
+<div class="woodfill"
+style="width:${legnoPerc}%">
+</div>
+
+</div>
+</div>
+`;
+
+if(pvcPerc >= legnoPerc){
+
+html += `
+<ul>
+<li>✔ Manutenzione minima</li>
+<li>✔ Ottimo isolamento termico</li>
+<li>✔ Soluzione moderna</li>
+<li>✔ Ottimo rapporto qualità/prezzo</li>
+<li>✔ Ideale per chi cerca praticità</li>
+</ul>
+`;
+
+}else{
+
+html += `
+<ul>
+<li>✔ Materiale naturale</li>
+<li>✔ Eleganza senza tempo</li>
+<li>✔ Ideale per edifici classici</li>
+<li>✔ Grande personalizzazione</li>
+<li>✔ Valorizza immobili di pregio</li>
+</ul>
+`;
+
+}
+
+html += `
+<div class="cta">
+📞 Contatta Melgari Serramenti per una consulenza gratuita
+</div>
+
+<button class="restart" onclick="location.reload()">
+Rifai il test
+</button>
+`;
+
+document.getElementById("result").innerHTML = html;
+document.getElementById("result").style.display = "block";
+
+}
+
+renderQuestion();
+
+</script>
+
+</body>
+</html>
