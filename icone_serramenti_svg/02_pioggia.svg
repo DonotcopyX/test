@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <title>Icona Pioggia</title>
+  <g fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    
+<path d="M65 125 C65 105 82 95 98 99 C105 78 137 78 145 100 C166 96 181 108 181 126 C181 141 169 148 151 148 H84 C70 148 65 139 65 125 Z"/>
+<line x1="88" y1="84" x2="78" y2="58"/>
+<line x1="112" y1="84" x2="102" y2="58"/>
+<line x1="136" y1="84" x2="126" y2="58"/>
+<line x1="160" y1="84" x2="150" y2="58"/>
+
+  </g>
+</svg>

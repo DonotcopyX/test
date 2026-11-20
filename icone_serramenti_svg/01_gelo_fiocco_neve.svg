@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <title>Icona Gelo - Fiocco di neve</title>
+  <g fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="120" y1="120" x2="185.00" y2="120.00"/>
+    <line x1="185.00" y1="120.00" x2="168.62" y2="131.47"/>
+    <line x1="185.00" y1="120.00" x2="168.62" y2="108.53"/>
+    <line x1="120" y1="120" x2="152.50" y2="176.29"/>
+    <line x1="152.50" y1="176.29" x2="134.37" y2="167.84"/>
+    <line x1="152.50" y1="176.29" x2="154.24" y2="156.37"/>
+    <line x1="120" y1="120" x2="87.50" y2="176.29"/>
+    <line x1="87.50" y1="176.29" x2="85.76" y2="156.37"/>
+    <line x1="87.50" y1="176.29" x2="105.63" y2="167.84"/>
+  </g>
+</svg>
